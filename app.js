@@ -1,3 +1,11 @@
+// attacker stats
+var attackerHealth = 10;
+var attackerAttack = 2;
+
+// defender stats
+var defenderHealth = 10;
+var defenderDefense = 2;
+
 // determines the defense bonus
 var standardDefenseBonus = false;
 var cityWall = false;
@@ -36,8 +44,8 @@ var totalDamageValue = totalDamage(attackForceValue, defenseForceValue);
 document.getElementById("totalDamage").innerHTML = totalDamageValue
 
 // calculates how much damage is dealt by the attacker
-function attackResult(attackForce, totalDamage, attack, accelerator) {
-    var finalAttackResult = Math.round((attackForce / totalDamage)) * (attack * accelerator)
+function attackResult(attackForce, totalDamage, attack) {
+    var finalAttackResult = Math.round((attackForce / totalDamage)) * (attack * 4.5)
 
     return finalAttackResult;
 }
@@ -52,4 +60,11 @@ function defenseResult(defenseForce, totalDamage, defenderDefense) {
 document.getElementById("defenseResult").innerHTML = defenseResult
 
 // calculates the new health of the attacker
-function 
+function attackerNewHealth(attackerHealth, defenseResult) {
+    return attackerHealth - defenseResult;
+}
+
+// calculates the new health of the defender
+function defenderNewHealth(defenderHealth, attackResult) {
+    return defenderHealth - attackResult;
+}
