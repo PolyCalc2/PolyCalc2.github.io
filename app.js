@@ -1,79 +1,32 @@
-// attacker stats
-var attackerHealth = 10;
-var attackerMaxHealth = 10;
-var attackerAttack = 2;
 
-// defender stats
-var defenderHealth = 10;
-var defenderMaxHealth = 10;
-var defenderDefense = 2;
-
-// determines the defense bonus
-var standardDefenseBonus = false;
-var cityWall = false;
-
-// calculates attackForce
-function attackForce(attackerAttack, attackerHealth, attackerMaxHealth) {
+//calculates the attack force of a unit
+function attackForce (attack, attackerHealth, attackerMaxHealth) {
     var finalAttackForce = attack * (attackerHealth / attackerMaxHealth)
 
     return finalAttackForce
 }
-var attackForceValue = attackForce(attackerAttack, defenderDefense, 10);
-document.getElementById("attackForce").innerHTML = attackForceValue
+document.getElementById("attackForce").innerHTML = attackForce(2, 10, 10)
 
-// calculates defenseForce
-function defenseForce(defenderDefense, defenderHealth, defenderMaxHealth, defenseBonus) {
-    /*if (standardDefenseBonus) {
-        defenseBonus = 1.5
-    } else if (cityWall) {
-        defenseBonus = 4
-    }*/
-    
+//calculates the defense force of a unit
+function defenseForce (defense, defenderHealth, defenderMaxHealth, defenseBonus) {
     var finalDefenseForce = defense * (defenderHealth / defenderMaxHealth) * defenseBonus
 
     return finalDefenseForce;
 }
-var defenseForceValue = defenseForce(2, 10, 10, 0);
-document.getElementById("defenseForce").innerHTML = defenseForceValue
+document.getElementById("defenseForce").innerHTML = defenseForce(1, 10, 10, 1.5)
 
-// calculates totalDamage
-function totalDamage(attackForce, defenseForce) {
+//calculates the total damage of the attack
+function totalDamage (attackForce, defenseForce) {
     var finalTotalDamage = attackForce + defenseForce
 
     return finalTotalDamage;
 }
-var totalDamageValue = totalDamage(attackForceValue, defenseForceValue);
-document.getElementById("totalDamage").innerHTML = totalDamageValue
+document.getElementById("totalDamage").innerHTML = totalDamage(attackForce(2, 10, 10), defenseForce(1, 10, 10, 1.5))
 
-// calculates how much damage is dealt by the attacker
-function attackResult(attackForce, totalDamage, attackerAttack) {
-    var finalAttackResult = Math.round((attackForce / totalDamage)) * (attackerAttack * 4.5)
+//calculates the health of the unit being attacked
+function attackResult (attackForce, totalDamage, attack, accelerator) {
+    var finalAttackResult = Math.round((attackForce / totalDamage)) * (attack * accelerator)
 
     return finalAttackResult;
 }
-var attackResultValue = attackResult(attackForceValue, totalDamageValue, attackerAttack);
-document.getElementById("attackResult").innerHTML = attackResultValue
-
-// calculates how much return damage is dealt by the defender
-function defenseResult(defenseForce, totalDamage, defenderDefense) {
-    var finalDefenseResult = round((defenseForce / totalDamage) * defender.defense * accelerator)
-    
-    return finalDefenseResult;
-}
-var defenseResultValue = defenseResult(defensekForceValue, totalDamageValue, defenderDefense);
-document.getElementById("defenseResult").innerHTML = defenseResult
-
-// calculates the new health of the attacker
-function attackerNewHealth(attackerHealth, defenseResult) {
-    return attackerHealth - defenseResult;
-}
-var attackerNewHealthValue = attackerNewHealth(attackerHealth, defenseResultValue);
-document.getElementById("attackerNewHealth)
-
-// calculates the new health of the defender
-function defenderNewHealth(defenderHealth, attackResult) {
-    var defenderFinalHealth = defenderHealth - attackResult;
-    
-    if (defenderFinalHealth < 1) {
-        
-}
+document.getElementById("attackResult").innerHTML = attackResult(attackForce(2, 10, 10), totalDamage(attackForce(2, 10, 10), defenseForce(1, 10, 10, 1.5)), 2, 1)
