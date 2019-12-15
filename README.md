@@ -2,6 +2,5 @@
 A new and improved Polytopia Calculator! Inspired by FrothFrenzy.
 
 # Credit
-[00100000spacebar](https://github.com/00100000spacebar) aka "Spacebar"
-
+[00100000spacebar](https://github.com/00100000spacebar) aka "Spacebar" </br>
 [eisthefifthletter](https://github.com/eisthefifthletter) aka "eis"
